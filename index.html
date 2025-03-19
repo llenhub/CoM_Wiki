@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wiki-Style Home</title>
+  <style>
+    /* Base styling for a clean look */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+    .menu {
+      max-width: 300px;
+      margin: 40px auto;
+    }
+    /* Styling for the main button with a book icon */
+    .book-btn {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      font-size: 1.2em;
+      text-align: left;
+      border: none;
+      background-color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 5px;
+    }
+    /* Optionally add a hover effect */
+    .book-btn:hover {
+      background-color: #eaeaea;
+    }
+    /* Styling for the submenu buttons */
+    .submenu button {
+      display: block;
+      width: 90%;
+      padding: 10px;
+      margin: 8px auto;
+      font-size: 1em;
+      border: none;
+      background-color: #e0e0e0;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .submenu button:hover {
+      background-color: #d0d0d0;
+    }
+  </style>
+</head>
+<body>
+  <div class="menu">
+    <!-- Main Themebooks button with a book emoji -->
+    <button id="themebooks-btn" class="book-btn">
+      📖 Themebooks
+    </button>
+    <!-- Hidden submenu that appears when Themebooks is clicked -->
+    <div id="themebooks-submenu" class="submenu" style="display:none;">
+      <button onclick="location.href='mythos.html'">Mythos</button>
+      <button onclick="location.href='logos.html'">Logos</button>
+    </div>
+  </div>
+
+  <script>
+    // Toggle display of the submenu when the main button is clicked
+    document.getElementById('themebooks-btn').addEventListener('click', function() {
+      var submenu = document.getElementById('themebooks-submenu');
+      submenu.style.display = submenu.style.display === "none" ? "block" : "none";
+    });
+  </script>
+</body>
+</html>
