@@ -182,28 +182,30 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   document.getElementById("saveAsPng").addEventListener("click", function () {
-    const themeCard = document.querySelector(".theme-card"); // Select the theme card
+    const themeCard = document.querySelector(".theme-card");
   
-    if (!themeCard) {
-      alert("Error: Theme card not found!"); // Debugging step
-      return;
-    }
+    // Temporarily hide all .clear-slot buttons before capturing
+    const clearSlots = document.querySelectorAll(".clear-slot");
+    clearSlots.forEach(slot => slot.style.display = "none");
   
     html2canvas(themeCard, {
-      backgroundColor: null, // Keep transparent background
-      scale: 3, // Increase resolution for better quality
-      useCORS: true // Ensures external fonts/images load properly
+      backgroundColor: null, // Keeps transparency
+      scale: 3, // Higher resolution
+      useCORS: true, // Allows external resources
+      allowTaint: false // Prevents CORS issues
     }).then(canvas => {
+      // Restore the .clear-slot buttons after capture
+      clearSlots.forEach(slot => slot.style.display = "");
+  
       const link = document.createElement("a");
       link.href = canvas.toDataURL("image/png");
-      link.download = "theme-card.png"; // File name
-      document.body.appendChild(link);
+      link.download = "theme-card.png";
       link.click();
-      document.body.removeChild(link);
     }).catch(error => {
       console.error("Error capturing theme-card:", error);
-      alert("Failed to save as PNG. Check console for details.");
+      alert("Failed to save as PNG. Possible CORS issue with the background image.");
     });
   });
+  
   
 });
