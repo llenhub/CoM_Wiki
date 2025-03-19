@@ -1,166 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Mythos</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f9f9f9;
-      margin: 20px;
-    }
-    .menu {
-      max-width: 350px;
-      margin: 40px auto;
-      position: relative;
-    }
-    .mythos-btn {
-      display: block;
-      width: 100%;
-      padding: 15px;
-      font-size: 1.2em;
-      text-align: left;
-      border: none;
-      background-color: #fff;
-      border-radius: 4px;
-      cursor: pointer;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      margin-bottom: 5px;
-      position: relative;
-    }
-    .mythos-btn:hover {
-      background-color: #eaeaea;
-    }
-    /* Tooltip styling */
-    .tooltip {
-      display: none;
-      position: absolute;
-      left: 105%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 250px;
-      background-color: #fff;
-      padding: 10px;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      text-align: left;
-      font-size: 0.9em;
-      line-height: 1.4;
-      z-index: 100;
-    }
-    .mythos-btn:hover .tooltip {
-      display: block;
-    }
-    .tags {
-      font-size: 0.85em;
-      margin-top: 5px;
-    }
-    .tag {
-      background-color: yellow;
-      padding: 2px 5px;
-      border-radius: 3px;
-      margin: 2px;
-      display: inline-block;
-    }
-  </style>
-</head>
-<body>
-  <h1>Mythos</h1>
-  <div class="menu">
-    <button class="mythos-btn" onclick="location.href='mythos/adaptation.html'">
-      Adaptation
-      <div class="tooltip">
-        <strong>Nothing is permanent, everything is ephemeral.</strong> Different challenges require entirely different means to overcome. Some Mythoi grant their Rifts the power to adapt to circumstance.
-        <div class="tags">
-          <span class="tag">A RANGE OF MAGIC SPELLS</span>
-          <span class="tag">ADAPTING TO HARSH ENVIRONMENTS</span>
-          <span class="tag">SHAPESHIFTING OR POWER COPYING</span>
-          <span class="tag">A MYSTERIOUS, UNPREDICTABLE FORCE</span>
-          <span class="tag">ELEMENTAL MANIPULATION</span>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mythos</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f9f9f9;
+        margin: 20px;
+      }
+      .menu {
+        max-width: 400px;
+        margin: 40px auto;
+        position: relative;
+      }
+
+      .mythos-btn {
+        position: relative;
+        width: 100%;
+        padding: 15px;
+        font-size: 1.2em;
+        text-align: left;
+        border: none;
+        background-color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px;
+        transition: background-color 0.3s ease-in-out;
+        overflow: hidden;
+      }
+
+      .mythos-btn:hover {
+        background-color: #eaeaea;
+      }
+
+      /* Image Overlay */
+      .btn-image {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transform: translateX(-50%);
+        transition: opacity 0.4s ease-in-out;
+      }
+
+      /* Fade in from middle when hovering */
+      .mythos-btn:hover .btn-image {
+        opacity: 1;
+      }
+
+      /* Hidden content */
+      .content {
+        max-height: 0;
+        overflow: hidden;
+        font-size: 0.9em;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+        padding: 0 15px;
+      }
+
+      /* When hovered, the content slides down */
+      .mythos-btn:hover + .content {
+        max-height: 300px;
+        padding: 10px 15px;
+      }
+
+      .tags {
+        font-size: 0.9em;
+        margin-top: 8px;
+      }
+      .tag {
+        background-color: yellow;
+        padding: 2px 5px;
+        border-radius: 3px;
+        margin: 2px;
+        display: inline-block;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Mythos</h1>
+    <div class="menu">
+      <div>
+        <button
+          class="mythos-btn"
+          onclick="location.href='mythos/adaptation.html'"
+        >
+          Adaptation
+          <div
+            class="btn-image"
+            style="background-image: url('pics/mythos_adaptation.png')"
+          ></div>
+        </button>
+        <div class="content">
+          <p><strong><h3>Adaptation</h3></strong></p>
+          <p>
+            <strong>Nothing is permanent, everything is ephemeral.</strong>
+            Different challenges require entirely different means to overcome.
+            Some Mythoi grant their Rifts the power to adapt to circumstance.
+          </p>
+          <div class="tags">
+            <span class="tag">A RANGE OF MAGIC SPELLS</span>
+            <span class="tag">ADAPTING TO HARSH ENVIRONMENTS</span>
+            <span class="tag">SHAPESHIFTING</span>
+            <span class="tag">POWER COPYING</span>
+            <span class="tag">A MYSTERIOUS, UNPREDICTABLE FORCE</span>
+            <span class="tag">ELEMENTAL MANIPULATION</span>
+          </div>
         </div>
       </div>
-    </button>
 
-    <button class="mythos-btn" onclick="location.href='mythos/bastion.html'">
-      Bastion
-      <div class="tooltip">
-        <strong>Some things can never be broken.</strong> A Bastion Mythos grants a Rift unshakable protection, resilience, or fortitude in the face of overwhelming forces.
-        <div class="tags">
-          <span class="tag">SUPERHUMAN DURABILITY</span>
-          <span class="tag">UNBREAKABLE DEFENSES</span>
-          <span class="tag">A SHIELD AGAINST THE WORLD</span>
-          <span class="tag">ENDURANCE BEYOND LIMITS</span>
+      <div>
+        <button
+          class="mythos-btn"
+          onclick="location.href='mythos/bastion.html'"
+        >
+          Bastion
+          <div
+            class="btn-image"
+            style="background-image: url('pics/mythos_bastion.png')"
+          ></div>
+        </button>
+        <div class="content">
+          <p><strong><h3>Bastion</h3></strong></p>
+          <p>
+            <strong
+              >Becoming manifested in reality comes with its share of
+              trouble.</strong
+            >
+            A Mythos that manages to find a Rift will often want to make sure
+            that the Rift stays open, or in other words, remains alive and
+            intact.
+          </p>
+          <div class="tags">
+            <span class="tag">CONJURE AN ARMOR OR A SHIELD</span>
+            <span class="tag">INVULNERABILITY</span>
+            <span class="tag">MAGICAL PROTECTION</span>
+            <span class="tag">IMMUNITY TO VARIOUS KINDS OF HARM</span>
+            <span class="tag">AN UNBREAKABLE BODY, WILL, OR SOUL</span>
+            <span class="tag">BEING UNTOUCHABLE BY THE LAW</span>
+          </div>
         </div>
       </div>
-    </button>
 
-    <button class="mythos-btn" onclick="location.href='mythos/divination.html'">
-      Divination
-      <div class="tooltip">
-        <strong>To know is to be prepared.</strong> The Divination Mythos gifts a Rift the power to perceive things hidden from others, foresee events, or decipher deep truths.
-        <div class="tags">
-          <span class="tag">SEEING THE FUTURE</span>
-          <span class="tag">MYSTICAL INSIGHT</span>
-          <span class="tag">UNCANNY PERCEPTION</span>
-          <span class="tag">SUPERNATURAL INTUITION</span>
+      <div>
+        <button
+          class="mythos-btn"
+          onclick="location.href='mythos/divination.html'"
+        >
+          Divination
+          <div
+            class="btn-image"
+            style="background-image: url('pics/mythos_divination.png')"
+          ></div>
+        </button>
+        <div class="content">
+          <p><strong><h3>Divination</h3></strong></p>
+          <p>
+            <strong>To be in the world, a Mythos must know the world.</strong>
+            It must be aware of things near and far, know of things that were or
+            things that are yet to come. It must understand the nature of its
+            environment, or it will be outsmarted, vanquished, and cast into
+            non-existence once more.
+          </p>
+          <div class="tags">
+            <span class="tag">CLAIRVOYANCE</span>
+            <span class="tag">SPECIAL SENSES</span>
+            <span class="tag">FORTUNE TELLING</span>
+            <span class="tag">A MYSTICAL SOURCE OF KNOWLEDGE</span>
+            <span class="tag"
+              >MAGICALLY FINDING A PERSON, AN OBJECT, OR INFORMATION</span
+            >
+            <span class="tag">PSYCHOMETRY</span>
+            <span class="tag">COMMUNICATING WITH OTHER REALMS OR BEINGS</span>
+          </div>
         </div>
       </div>
-    </button>
 
-    <button class="mythos-btn" onclick="location.href='mythos/expression.html'">
-      Expression
-      <div class="tooltip">
-        <strong>True power must be released.</strong> A Rift with an Expression Mythos is gifted with immense outward force—energy projection, destructive capabilities, or awe-inspiring spectacle.
-        <div class="tags">
-          <span class="tag">ELEMENTAL BLASTS</span>
-          <span class="tag">RAW FORCE</span>
-          <span class="tag">ENERGY MANIPULATION</span>
-          <span class="tag">UNSTOPPABLE ATTACKS</span>
+      <div>
+        <button
+          class="mythos-btn"
+          onclick="location.href='mythos/expression.html'"
+        >
+          Expression
+          <div
+            class="btn-image"
+            style="background-image: url('pics/mythos_expression.png')"
+          ></div>
+        </button>
+        <div class="content">
+          <p><strong><h3>Expression</h3></strong></p>
+          <p>
+            <strong
+              >An Expression theme represents the ways in which your Mythos
+              wants to directly influence the world.</strong
+            >
+            Most commonly, these powers either project outwards as matter,
+            energy, or magical effects, or alter you in a way that would help
+            you leave your mark on the world around you.
+          </p>
+          <div class="tags">
+            <span class="tag">ELEMENTAL OR PHYSICAL PROJECTION</span>
+            <span class="tag">LEGENDARY STRENGTH</span>
+            <span class="tag">SUPERIOR WARRIOR PROWESS</span>
+            <span class="tag">OVERPOWERING PRESENCE</span>
+            <span class="tag">HEALING POWERS</span>
+          </div>
         </div>
       </div>
-    </button>
 
-    <button class="mythos-btn" onclick="location.href='mythos/mobility.html'">
-      Mobility
-      <div class="tooltip">
-        <strong>Nothing can hold you back.</strong> The Mobility Mythos grants its Rift extraordinary movement abilities, allowing them to evade, chase, or traverse obstacles with ease.
-        <div class="tags">
-          <span class="tag">SUPER SPEED</span>
-          <span class="tag">FLIGHT</span>
-          <span class="tag">TELEPORTATION</span>
-          <span class="tag">PARKOUR MASTERY</span>
+      <div>
+        <button
+          class="mythos-btn"
+          onclick="location.href='mythos/mobility.html'"
+        >
+          Mobility
+          <div
+            class="btn-image"
+            style="background-image: url('pics/mythos_mobility.png')"
+          ></div>
+        </button>
+        <div class="content">
+          <p><strong><h3>Mobility</h3></strong></p>
+          <p>
+            <strong
+              >Taking shape and form in the material world has the immediate
+              effect of limiting one to a single point in space and
+              time,</strong
+            >
+            a state both alien and undesirable to any Mythos. The Mythoi
+            therefore bestow upon their Rifts the ability to travel from one
+            place to another wondrously, whether through physical movement or
+            magical transportation.
+          </p>
+          <div class="tags">
+            <span class="tag">NIMBLE, GRACEFUL, OR DEXTROUS MOVEMENT</span>
+            <span class="tag">SUPERNATURAL SPEED</span>
+            <span class="tag">FLIGHT</span>
+            <span class="tag"
+              >TRAVELLING AS A CLOUD, A DROP OF WATER, OR A RAY OF LIGHT</span
+            >
+            <span class="tag">RIDING ON MYTHICAL CREATURES</span>
+            <span class="tag">MAGICAL TRANSPORTATION</span>
+          </div>
         </div>
       </div>
-    </button>
 
-    <button class="mythos-btn" onclick="location.href='mythos/relic.html'">
-      Relic
-      <div class="tooltip">
-        <strong>A Mythos tied to an object of power.</strong> A Rift with a Relic Mythos channels their strength through an ancient, mystical, or legendary artifact.
-        <div class="tags">
-          <span class="tag">HOLY RELICS</span>
-          <span class="tag">LEGENDARY WEAPONS</span>
-          <span class="tag">TALISMANS OF POWER</span>
-          <span class="tag">MAGICAL ARTIFACTS</span>
+      <div>
+        <button class="mythos-btn" onclick="location.href='mythos/relic.html'">
+          Relic
+          <div
+            class="btn-image"
+            style="background-image: url('pics/mythos_relic.png')"
+          ></div>
+        </button>
+        <div class="content">
+          <p><strong><h3>Relic</h3></strong></p>
+          <p>
+            <strong
+              >Myths and legends are full of magical items and objects.</strong
+            >
+            The mojo, wanga, or gri-gri bag of African traditions could hold
+            powerful prayers or spells. Neptune’s trident gave its bearer
+            command over the seas and over water.
+          </p>
+          <div class="tags">
+            <span class="tag">A MAGICAL WEAPON</span>
+            <span class="tag">A MAGICAL PIECE OF ARMOR OR CLOTHING</span>
+            <span class="tag">A GIFT FROM ANOTHER REALM</span>
+            <span class="tag">A BAG FULL OF WONDERS</span>
+            <span class="tag">MUNDANE EQUIPMENT IMBUED WITH LEGEND</span>
+            <span class="tag">A BLESSED OR WITCHED ITEM</span>
+          </div>
         </div>
       </div>
-    </button>
 
-    <button class="mythos-btn" onclick="location.href='mythos/subversion.html'">
-      Subversion
-      <div class="tooltip">
-        <strong>Rules were made to be broken.</strong> A Rift with a Subversion Mythos bends reality, manipulates perception, or turns limitations into advantages.
-        <div class="tags">
-          <span class="tag">ILLUSIONS</span>
-          <span class="tag">REALITY WARPING</span>
-          <span class="tag">LIES MADE REAL</span>
-          <span class="tag">UNPREDICTABLE CHAOS</span>
+      <div>
+        <button
+          class="mythos-btn"
+          onclick="location.href='mythos/subversion.html'"
+        >
+          Subversion
+          <div
+            class="btn-image"
+            style="background-image: url('pics/mythos_subversion.png')"
+          ></div>
+        </button>
+        <div class="content">
+          <p><strong><h3>Subversion</h3></strong></p>
+          <p>
+            <strong
+              >Not all Mythoi blast the world directly with their legendary
+              tale.</strong
+            >
+            In a city haunted by the Mist, Mythoi have learned that gifting
+            their Rifts with the ability to act secretly can help them secure a
+            deeper and more lasting influence.
+          </p>
+          <div class="tags">
+            <span class="tag">INVISIBILITY</span>
+            <span class="tag">TRICKERY AND ILLUSIONS</span>
+            <span class="tag">THIEVERY AND STEALTH</span>
+            <span class="tag">HYPNOTISM AND SUBTLE MANIPULATION</span>
+            <span class="tag">HIDING IN PLAIN SIGHT</span>
+            <span class="tag">SECRECY AND COUNTER-DETECTION</span>
+          </div>
         </div>
       </div>
-    </button>
-  </div>
+    </div>
 
-  <p><a href="index.html">Back to Home</a></p>
-</body>
+    <p><a href="index.html">Back to Home</a></p>
+  </body>
 </html>
