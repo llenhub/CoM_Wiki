@@ -94,6 +94,7 @@ function clearSlot(slotElement) {
   letterDiv.textContent = "";
   textDiv.textContent = "";
   slotElement.dataset.question = "";
+  textDiv.style.fontSize = "27px";
 }
 
 // CLEAR SLOT FUNCTION for Weakness Tags
@@ -103,6 +104,7 @@ function clearWeaknessSlot(slotElement) {
   letterDiv.textContent = "";
   textDiv.textContent = "";
   slotElement.dataset.question = "";
+  textDiv.style.fontSize = "27px";
 }
 
 // CUSTOM TOOLTIP
@@ -168,36 +170,40 @@ document.addEventListener("DOMContentLoaded", function () {
   // Remove placeholder text on focus and restore if left empty
   [themeTitleDiv, mysteryDiv].forEach((div) => {
     div.addEventListener("focus", function () {
-      if (this.textContent.trim() === "Type here...") {
+      if (this.textContent.trim() === "") {
         this.textContent = "";
       }
     });
     div.addEventListener("blur", function () {
       if (this.textContent.trim() === "") {
-        this.textContent = "Type here...";
+        this.textContent = "";
       }
     });
   });
 
-  // Load saved values
-  themeTitleDiv.textContent =
-    localStorage.getItem("themeTitle") || "Type here...";
-  mysteryDiv.textContent = localStorage.getItem("mystery") || "Type here...";
-
-  // Save on input change
-  function saveToLocalStorage() {
-    localStorage.setItem("themeTitle", themeTitleDiv.textContent.trim());
-    localStorage.setItem("mystery", mysteryDiv.textContent.trim());
-  }
-
-  themeTitleDiv.addEventListener("input", saveToLocalStorage);
-  mysteryDiv.addEventListener("input", saveToLocalStorage);
-});
-
-// (Optional) Save THEME TITLE and MYSTERY in localStorage
-document.addEventListener("DOMContentLoaded", function () {
-  const themeTitleDiv = document.getElementById("themeTitle");
-  const mysteryDiv = document.getElementById("mystery");
-
-  // ... etc ...
+  document.getElementById("saveAsPng").addEventListener("click", function () {
+    const themeCard = document.querySelector(".theme-card"); // Select the theme card
+  
+    if (!themeCard) {
+      alert("Error: Theme card not found!"); // Debugging step
+      return;
+    }
+  
+    html2canvas(themeCard, {
+      backgroundColor: null, // Keep transparent background
+      scale: 3, // Increase resolution for better quality
+      useCORS: true // Ensures external fonts/images load properly
+    }).then(canvas => {
+      const link = document.createElement("a");
+      link.href = canvas.toDataURL("image/png");
+      link.download = "theme-card.png"; // File name
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }).catch(error => {
+      console.error("Error capturing theme-card:", error);
+      alert("Failed to save as PNG. Check console for details.");
+    });
+  });
+  
 });

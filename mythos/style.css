@@ -1,11 +1,15 @@
 /* --- Layout --- */
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+
+@import url("https://fonts.googleapis.com/css?family=Delicious Handrawn&display=swap");
+
 * {
   box-sizing: border-box;
 }
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f9f9f9;
+  background: #efefef;
 }
 .split-container {
   display: flex;
@@ -77,6 +81,72 @@ body {
   transform: rotateY(180deg);
 }
 
+#type{
+    font-family: "Delicious Handrawn";
+    position: absolute;
+    top: 11px;
+    margin-left: -10px;
+    font-size: 25px; /* Adjust to taste */
+}
+
+#themeTitle,
+#mystery {
+  font-family: "Delicious Handrawn";
+  position: absolute;
+  padding-left: 20px;
+  width: 300px;
+  font-size: 36px; /* Adjust to taste */
+  line-height: 1.2; /* Slightly tighten spacing */
+  /* top is unique for each field */
+
+  /* Make text left-aligned instead of centered */
+  text-align: left;
+
+  /* Visually clamp to 2 lines */
+  display: -webkit-box; /* enables the “box” layout for line-clamp */
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* show at most 2 lines */
+  overflow: hidden; /* hide anything beyond the second line */
+  white-space: normal;
+}
+
+#themeTitle {
+  position: absolute;
+  top: 70px;
+}
+
+#mystery {
+  position: absolute;
+  top: 250px;
+}
+
+.power-tag-line,
+.weakness-tag-line {
+  padding-left: 10px;
+  width: 250px;
+  font-size: 27px; /* Adjust to taste */
+  line-height: 1.35; /* Slightly tighten spacing */
+}
+
+.power-tag-line {
+  position: absolute;
+  top: 387px;
+}
+
+.weakness-tag-line {
+  position: absolute;
+  top: 440px;
+}
+
+.tag-text {
+  white-space: nowrap; /* force one line */
+  display: inline-block; /* Fitty requires an inline-level or block container */
+}
+
+.clear-slot {
+  left: 330px;
+}
+
 /* --- Flip Card Content Layout (Top/Bottom) --- */
 .question-top {
   flex: 1;
@@ -129,15 +199,15 @@ body {
 .theme-card {
   background: url("../pics/mythos_themefront.png") no-repeat center center;
   background-size: cover;
-  width: 90%;
-  max-width: 450px;
-  background: #f5f5f5;
+  width: 387px;
+  height: 987px;
+  position: relative;
+  margin: 20px auto;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  margin-top: 20px;
-  position: relative;
 }
+
 .theme-card h2,
 .theme-card h3 {
   text-align: center;
@@ -161,14 +231,13 @@ body {
   padding: 8px;
   font-size: 1.1em;
   font-weight: bold;
-  border-bottom: 2px solid #ccc;
   text-align: center;
   outline: none;
   cursor: text;
   margin-bottom: 15px;
 }
 .editable-title:empty::before {
-  content: "Type here...";
+  content: "";
   color: #999;
 }
 
@@ -179,6 +248,7 @@ body {
 }
 .power-tag-line,
 .weakness-tag-line {
+  font-family: "Delicious Handrawn";
   display: flex;
   align-items: center;
   margin: 5px 0;
@@ -194,12 +264,12 @@ body {
 }
 .tag-text {
   flex: 1;
-  color: #555;
+  color: #000000;
   outline: none;
   cursor: text;
 }
 .tag-text:empty::before {
-  content: "Click to edit...";
+  content: "";
   color: #999;
 }
 .clear-slot {
@@ -208,8 +278,8 @@ body {
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  color: red;
-  font-weight: bold;
+  color: rgb(59, 59, 59);
+  font-weight: normal;
 }
 
 /* --- Custom Tooltip --- */
@@ -226,3 +296,20 @@ body {
   font-size: 0.85em;
   max-width: 300px;
 }
+
+#saveAsPng {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #ff5722;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  #saveAsPng:hover {
+    background-color: #e64a19;
+  }
+  
