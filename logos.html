@@ -1,15 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Logos</title>
+  <meta charset="utf-8">
+  <title>Text Tetris</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
+    body {
+      font-family: monospace;
+      background: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #game {
+      white-space: pre;
+      font-size: 20px;
+      line-height: 20px;
+      border: 2px solid #fff;
+      padding: 10px;
+    }
   </style>
 </head>
 <body>
-  <h1>Mythos</h1>
-  <p>Content for the Logos page goes here.</p>
-  <p><a href="index.html">Back to Home</a></p>
+  <div id="game"></div>
+  <script>
+    const rows = 20;
+    const cols = 10;
+    let board = [];
+    let currentPiece = null;
+    
+    // Define tetromino shapes as arrays of [x, y] coordinates.
+    const tetrominoes = {
+      I: [[0,0], [0,1], [0,2], [0,3]],
+      O: [[0,0], [1,0], [0,1], [1,1]],
+      T: [[1,0], [0,1], [1,1], [2,1]],
+      S: [[1,0], [2,0], [0,1], [1,1]],
+      Z: [[0,0], [1,0], [1,1], [2,1]],
+      J: [[0,0], [0,1], [1,1], [2,1]],
+      L: [[2,0], [0,1], [1,1], [2,1]]
+    };
+    
+    // Initialize the game board.
+    function initBoard() {
+      board = [];
+      for (let i = 0; i < rows; i++) {
+        board.push(Array(cols).fill(0));
+      }
+    }
+    
+    // Draw the board and the current piece.
+    function draw() {
+      let display = '';
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          let cellFilled = false;
+          // Check if the current piece occupies this cell.
+          if (currentPiece) {
+            for (let block of currentPiece.shape) {
+              let bx = currentPiece.x + block[0];
+              let by = currentPiece.y + block[1];
+              if (bx === x && by === y) {
+                cellFilled = true;
+                break;
+              }
+            }
+          }
+          if (cellFilled || board[y][x] !== 0) {
+            display += "[]";
+          } else {
+            display += "  ";
+          }
+        }
+        display += "\n";
+      }
+      document.getElementById("game").innerText = display;
+    }
+    
+    // Check if a piece can move by the given offsets.
+    function isValidPosition(piece, offsetX, offsetY) {
+      for (let block of piece.shape) {
+        let newX = piece.x + block[0] + offsetX;
+        let newY = piece.y + block[1] + offsetY;
+        if (newX < 0 || newX >= cols || newY < 0 || newY >= rows) return false;
+        if (board[newY][newX] !== 0) return false;
+      }
+      return true;
+    }
+    
+    // Rotate the piece 90° clockwise (using the first block as pivot).
+    function rotatePiece(piece) {
+      let newShape = [];
+      let pivot = piece.shape[0];
+      for (let block of piece.shape) {
+        let relX = block[0] - pivot[0];
+        let relY = block[1] - pivot[1];
+        // 90° rotation: (x, y) -> (y, -x)
+        let newX = relY;
+        let newY = -relX;
+        newShape.push([newX + pivot[0], newY + pivot[1]]);
+      }
+      return newShape;
+    }
+    
+    // Fix the current piece to the board.
+    function fixPiece() {
+      for (let block of currentPiece.shape) {
+        let x = currentPiece.x + block[0];
+        let y = currentPiece.y + block[1];
+        board[y][x] = 1;
+      }
+      clearLines();
+    }
+    
+    // Remove full lines and add empty lines at the top.
+    function clearLines() {
+      for (let y = rows - 1; y >= 0; y--) {
+        if (board[y].every(cell => cell !== 0)) {
+          board.splice(y, 1);
+          board.unshift(Array(cols).fill(0));
+          y++; // Recheck the same row index.
+        }
+      }
+    }
+    
+    // Spawn a new random piece at the top of the board.
+    function spawnPiece() {
+      const types = Object.keys(tetrominoes);
+      const type = types[Math.floor(Math.random() * types.length)];
+      // Deep copy the shape array.
+      const shape = JSON.parse(JSON.stringify(tetrominoes[type]));
+      currentPiece = { shape: shape, x: Math.floor(cols/2) - 1, y: 0, type: type };
+      if (!isValidPosition(currentPiece, 0, 0)) {
+        alert("Game Over");
+        initBoard();
+      }
+    }
+    
+    // The main game loop (called periodically).
+    function gameTick() {
+      if (isValidPosition(currentPiece, 0, 1)) {
+        currentPiece.y++;
+      } else {
+        fixPiece();
+        spawnPiece();
+      }
+      draw();
+    }
+    
+    // Listen for keyboard input.
+    document.addEventListener("keydown", function(e) {
+      if (!currentPiece) return;
+      if (e.key === "ArrowLeft") {
+        if (isValidPosition(currentPiece, -1, 0)) {
+          currentPiece.x--;
+        }
+      } else if (e.key === "ArrowRight") {
+        if (isValidPosition(currentPiece, 1, 0)) {
+          currentPiece.x++;
+        }
+      } else if (e.key === "ArrowDown") {
+        if (isValidPosition(currentPiece, 0, 1)) {
+          currentPiece.y++;
+        }
+      } else if (e.key === "ArrowUp") {
+        const rotatedShape = rotatePiece(currentPiece);
+        const testPiece = { shape: rotatedShape, x: currentPiece.x, y: currentPiece.y };
+        if (isValidPosition(testPiece, 0, 0)) {
+          currentPiece.shape = rotatedShape;
+        }
+      }
+      draw();
+    });
+    
+    // Start the game.
+    initBoard();
+    spawnPiece();
+    draw();
+    setInterval(gameTick, 500);
+  </script>
 </body>
 </html>

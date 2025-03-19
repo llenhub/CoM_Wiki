@@ -11,39 +11,50 @@ body {
   font-family: Arial, sans-serif;
   background: #efefef;
 }
+
+/* Ensure the main container takes full viewport height */
 .split-container {
   display: flex;
-  min-height: 100vh;
-  align-items: flex-start;
+  height: 100vh; /* Full screen height */
+  align-items: stretch; /* Ensures both panels stretch equally */
 }
+
+/* Left and Right Panel Independent Scrolling */
 .left-panel,
 .right-panel {
-  padding: 20px;
-  width: 50%;
-  overflow-y: auto;
+  height: 100%; /* Both panels take full height */
+  overflow-y: auto; /* Enables independent scrolling */
 }
-/* Left panel arranged horizontally */
+
+/* Adjust width distribution */
 .left-panel {
+  flex: 2; /* Takes up more space */
+  padding: 20px;
   background: #efefef;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-items: flex-start;
-  justify-content: flex-start;
 }
+
 .right-panel {
+  flex: 1; /* Takes up less space */
+  padding: 0px;
   background: #fff;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
+}
+
+#powerCardsContainer,
+#weaknessCardsContainer {
+  display: flex;
+  flex-wrap: wrap; /* Allows cards to move to a new row if needed */
+  justify-content: flex-start; /* Aligns cards to the left */
+  gap: 20px; /* Adds space between cards */
 }
 
 /* --- Flip Card (Vertical Flip) --- */
 .flip-card {
   background-color: transparent;
-  width: 200px;
-  height: 220px;
+  width: 250px;
+  height: 250px;
   perspective: 1000px;
   cursor: pointer;
 }
@@ -81,22 +92,24 @@ body {
   transform: rotateY(180deg);
 }
 
-#type{
-    font-family: "Delicious Handrawn";
-    position: absolute;
-    top: 11px;
-    margin-left: -10px;
-    font-size: 25px; /* Adjust to taste */
+#type {
+  font-family: "Delicious Handrawn";
+  position: absolute;
+  top: 0px;
+  font-weight: normal;
+  margin-left: -10px;
+  font-size: 22px; /* Adjust to taste */
+  color: #ffffff;
 }
 
 #themeTitle,
 #mystery {
   font-family: "Delicious Handrawn";
   position: absolute;
-  padding-left: 20px;
-  width: 300px;
-  font-size: 36px; /* Adjust to taste */
-  line-height: 1.2; /* Slightly tighten spacing */
+  padding-left: 5px;
+  width: 280px;
+  font-size: 28px; /* Adjust to taste */
+  line-height: 1.25; /* Slightly tighten spacing */
   /* top is unique for each field */
 
   /* Make text left-aligned instead of centered */
@@ -112,30 +125,30 @@ body {
 
 #themeTitle {
   position: absolute;
-  top: 70px;
+  top: 55px;
 }
 
 #mystery {
   position: absolute;
-  top: 250px;
+  top: 199px;
 }
 
 .power-tag-line,
 .weakness-tag-line {
   padding-left: 10px;
-  width: 250px;
+  width: 200px;
   font-size: 27px; /* Adjust to taste */
-  line-height: 1.35; /* Slightly tighten spacing */
+  line-height: 1.05; /* Slightly tighten spacing */
 }
 
 .power-tag-line {
   position: absolute;
-  top: 387px;
+  top: 295px;
 }
 
 .weakness-tag-line {
   position: absolute;
-  top: 440px;
+  top: 335px;
 }
 
 .tag-text {
@@ -144,7 +157,7 @@ body {
 }
 
 .clear-slot {
-  left: 330px;
+  left: 260px;
 }
 
 /* --- Flip Card Content Layout (Top/Bottom) --- */
@@ -167,12 +180,14 @@ body {
 
 /* Draggable Answer Block on back side */
 .answer-block {
-  margin-top: 10px;
-  padding: 8px 10px;
+  margin-top: 5px;
+  padding: 8px 5px;
   background: #ffd700;
-  border-radius: 5px;
+  border-radius: 2px;
   cursor: grab;
   font-weight: bold;
+  font-style: italic;
+  font-size: 12px;
   text-align: center;
 }
 
@@ -185,11 +200,11 @@ body {
   border-radius: 3px;
   display: inline-block;
   margin-bottom: 5px;
-  font-size: 1em;
+  font-size: 14px;
   font-weight: bold;
 }
 .flip-card-front .question-text {
-  font-size: 1em;
+  font-size: 14px;
   color: #333;
   margin-top: 5px;
   font-weight: bold;
@@ -199,10 +214,15 @@ body {
 .theme-card {
   background: url("../pics/mythos_themefront.png") no-repeat center center;
   background-size: cover;
-  width: 387px;
-  height: 987px;
+  width: 310px;
+  height: 790px;
+  min-width: 310px;
+  min-height: 790px;
+  max-width: 310px;
+  max-height: 790px;
   position: relative;
   margin: 20px auto;
+  align-self: center;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   padding: 20px;
@@ -267,6 +287,7 @@ body {
   color: #000000;
   outline: none;
   cursor: text;
+  margin-left: 10px;
 }
 .tag-text:empty::before {
   content: "";
@@ -298,18 +319,17 @@ body {
 }
 
 #saveAsPng {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #ff5722;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  #saveAsPng:hover {
-    background-color: #e64a19;
-  }
-  
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #ff5722;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+#saveAsPng:hover {
+  background-color: #e64a19;
+}

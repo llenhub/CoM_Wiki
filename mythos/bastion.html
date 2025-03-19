@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <meta charset="UTF-8" />
+    <title>Adaptation Card Maker</title>
+    <!-- Link to external CSS (assuming style.css is in the same folder) -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Tooltip element for hover text -->
+    <div id="tooltip"></div>
+
+    <div class="split-container">
+      <!-- LEFT PANEL: Flip Cards for Power & Weakness -->
+      <div class="left-panel">
+        <button
+          onclick="window.location.href='../mythos.html'"
+          style="
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+          "
+        >
+          Back to Mythos
+        </button>
+
+        <h2 style="width: 100%">THEME TITLE</h2>
+        <hr />
+        <p>
+          Name your theme in a way that encapsulates its nature and style. Write
+          its name on your theme card under <strong>TITLE</strong>. For example:
+        </p>
+        <ul>
+          <li><strong>(Talos)</strong> Bronzen Construct</li>
+          <li><strong>(Poltergeist)</strong> Untouchable</li>
+          <li><strong>(Fairy Godmother)</strong> Protector of the Light</li>
+        </ul>
+
+        <h2 style="width: 100%">MYSTERY</h2>
+        <hr />
+        <p>
+          Choose a Mystery for this theme: a question that your Mythos wants you
+          to explore, investigate, or discover the answer to. It could be
+          related to your powers, to your legend, or to your mundane life. For
+          example:
+        </p>
+        <ul>
+          <li><strong>(Talos)</strong> “Why do I feel like I’m different?”</li>
+          <li><strong>(Poltergeist)</strong> “Who killed me and why?”</li>
+          <li>
+            <strong>(Fairy Godmother)</strong> “What is the dark force rising in
+            the City?”
+          </li>
+        </ul>
+        <p>You can try exploring the following options:</p>
+        <ul>
+          <li>Wondering who or what you were meant to protect</li>
+          <li>Questions about the threats you are meant to stop</li>
+          <li>A dark desire to find out what could be your undoing</li>
+        </ul>
+
+        <h2 style="width: 100%">POWER TAG QUESTIONS</h2>
+        <hr />
+        <p>
+          Answer the first question; then choose two more questions to answer.
+          Answer each question with a single description no more than a few
+          words long. In your answer, you should describe something that will be
+          useful to your character during the game. Each answer becomes a power
+          tag.
+        </p>
+        <p>
+          Tip: Drag the question's letter to the card. You can also click the
+          card to flip it, to see example answers!
+        </p>
+
+        <div id="powerCardsContainer"></div>
+
+        <h2 style="width: 100%">WEAKNESS TAG QUESTIONS</h2>
+        <hr />
+        <p>
+          Choose one question to answer. Answer it with a single description no
+          more than a few words long. In your answer, you should describe
+          something that will impede your character’s actions during the game.
+          Your answer becomes a weakness tag.
+        </p>
+        <p>
+          Tip: Drag the question's letter to the card. You can also click the
+          card to flip it, to see example answers!
+        </p>
+
+        <div id="weaknessCardsContainer"></div>
+      </div>
+
+      <!-- RIGHT PANEL: Theme Card with Editable THEME TITLE, MYSTERY, Power & Weakness Tag Slots -->
+      <div class="right-panel">
+        <div class="theme-card">
+          <div id="type" class="editable-title" contenteditable="false">
+            Adaptation
+          </div>
+          <div
+            id="themeTitle"
+            class="editable-title"
+            contenteditable="true"
+          ></div>
+
+          <div id="mystery" class="editable-title" contenteditable="true"></div>
+
+          <div class="power-tags">
+            <div class="power-tag-line" id="slot1" data-question="">
+              <div class="tag-letter" id="letter1"></div>
+              <div class="tag-text" id="text1" contenteditable="true"></div>
+              <span class="clear-slot" onclick="clearSlot(this.parentElement)"
+                >x</span
+              >
+            </div>
+            <div class="power-tag-line" id="slot2" data-question="">
+              <div class="tag-letter" id="letter2"></div>
+              <div class="tag-text" id="text2" contenteditable="true"></div>
+              <span class="clear-slot" onclick="clearSlot(this.parentElement)"
+                >x</span
+              >
+            </div>
+            <div class="power-tag-line" id="slot3" data-question="">
+              <div class="tag-letter" id="letter3"></div>
+              <div class="tag-text" id="text3" contenteditable="true"></div>
+              <span class="clear-slot" onclick="clearSlot(this.parentElement)"
+                >x</span
+              >
+            </div>
+            <div class="power-tag-line" id="slot4" data-question="">
+              <div class="tag-letter" id="letter4"></div>
+              <div class="tag-text" id="text4" contenteditable="true"></div>
+              <span class="clear-slot" onclick="clearSlot(this.parentElement)"
+                >x</span
+              >
+            </div>
+            <div class="power-tag-line" id="slot5" data-question="">
+              <div class="tag-letter" id="letter5"></div>
+              <div class="tag-text" id="text5" contenteditable="true"></div>
+              <span class="clear-slot" onclick="clearSlot(this.parentElement)"
+                >x</span
+              >
+            </div>
+            <div class="power-tag-line" id="slot6" data-question="">
+              <div class="tag-letter" id="letter6"></div>
+              <div class="tag-text" id="text6" contenteditable="true"></div>
+              <span class="clear-slot" onclick="clearSlot(this.parentElement)"
+                >x</span
+              >
+            </div>
+            <div class="power-tag-line" id="slot7" data-question="">
+              <div class="tag-letter" id="letter7"></div>
+              <div class="tag-text" id="text7" contenteditable="true"></div>
+              <span class="clear-slot" onclick="clearSlot(this.parentElement)"
+                >x</span
+              >
+            </div>
+          </div>
+
+          <div class="weakness-tags">
+            <div class="weakness-tag-line" id="wslot1" data-question="">
+              <div class="tag-letter" id="wletter1"></div>
+              <div class="tag-text" id="wtext1" contenteditable="true"></div>
+              <span
+                class="clear-slot"
+                onclick="clearWeaknessSlot(this.parentElement)"
+                >x</span
+              >
+            </div>
+            <div class="weakness-tag-line" id="wslot2" data-question="">
+              <div class="tag-letter" id="wletter2"></div>
+              <div class="tag-text" id="wtext2" contenteditable="true"></div>
+              <span
+                class="clear-slot"
+                onclick="clearWeaknessSlot(this.parentElement)"
+                >x</span
+              >
+            </div>
+            <div class="weakness-tag-line" id="wslot3" data-question="">
+              <div class="tag-letter" id="wletter3"></div>
+              <div class="tag-text" id="wtext3" contenteditable="true"></div>
+              <span
+                class="clear-slot"
+                onclick="clearWeaknessSlot(this.parentElement)"
+                >x</span
+              >
+            </div>
+            <button id="saveAsPng">Save as PNG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reference your external script file (assuming script.js is in the same folder) -->
+    <script src="script.js"></script>
+    <script src="bastion.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fitty/2.3.6/fitty.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        fitty(".tag-text", {
+          minSize: 5, // minimum font size
+          maxSize: 27, // maximum font size
+          multiLine: false, // single-line resizing
+        });
+      });
+    </script>
+  </body>
+</html>

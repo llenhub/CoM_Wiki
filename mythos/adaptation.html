@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    z
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <meta charset="UTF-8" />
     <title>Adaptation Card Maker</title>
@@ -13,156 +12,82 @@
     <div id="tooltip"></div>
 
     <div class="split-container">
-      <!-- LEFT PANEL: Flip Cards for Power & Weakness arranged horizontally -->
+      <!-- LEFT PANEL: Flip Cards for Power & Weakness -->
       <div class="left-panel">
-        <h2 style="width: 100%">POWER TAG QUESTIONS</h2>
+        <button onclick="window.location.href='../mythos.html'" style="padding: 10px 20px; font-size: 16px; cursor: pointer; border: none; background-color: #007BFF; color: white; border-radius: 5px;">
+          Back to Mythos
+        </button>
+        
+        <h2 style="width: 100%">THEME TITLE</h2>
+        <hr>
         <p>
-          Answer the question A; then choose two more questions to answer.
+          Name your theme in a way that encapsulates its nature and style. Write
+          its name on your theme card under <strong>TITLE</strong>. For example:
+        </p>
+        <ul>
+          <li><strong>(Merlin)</strong> Wizard & Guide</li>
+          <li><strong>(Doppelganger)</strong> Other People’s Powers</li>
+          <li><strong>(Geppetto)</strong> A Love for Toymaking</li>
+        </ul>
+
+        <h2 style="width: 100%">MYSTERY</h2>
+        <hr>
+        <p>
+          Choose a Mystery for this theme: a question that your Mythos wants you
+          to explore, investigate, or discover the answer to. It could be
+          related to your powers, to your legend, or to your mundane life. For
+          example:
+        </p>
+        <ul>
+          <li><strong>(Merlin)</strong> Where is the Holy Grail now?</li>
+          <li>
+            <strong>(Doppelganger)</strong> What is the ultimate power I could
+            steal?
+          </li>
+          <li>
+            <strong>(Geppetto)</strong> Who or what can breathe life into my
+            toys?
+          </li>
+        </ul>
+        <p>You can try exploring the following options:</p>
+        <ul>
+          <li>
+            Philosophical questions about the nature or source of your powers
+          </li>
+          <li>Seeking something that is greater than your powers</li>
+          <li>Fears of losing touch with your original nature</li>
+        </ul>
+
+        <h2 style="width: 100%">POWER TAG QUESTIONS</h2>
+        <hr>
+        <p>
+          Answer the first question; then choose two more questions to answer.
           Answer each question with a single description no more than a few
           words long. In your answer, you should describe something that will be
           useful to your character during the game. Each answer becomes a power
-          tag. Write it on your theme card under POWER TAGS along with the
-          letter of the question.
+          tag.
+        </p>
+        <p>
+          Tip: Drag the question's letter to the card. You can also click the
+          card to flip it, to see example answers!
         </p>
 
-        <!-- POWER CARD A -->
-        <div class="flip-card" id="cardA">
-          <div class="flip-card-inner">
-            <div class="flip-card-front" id="frontA">
-              <div
-                class="draggable-letter"
-                draggable="true"
-                data-letter="A"
-                data-question="What Mythos power allows you to respond differently to every situation?"
-              >
-                <span>A</span>
-              </div>
-              <div class="question-text">
-                What Mythos power allows you to respond differently to every
-                situation?
-              </div>
-            </div>
-            <div class="flip-card-back">
-              <div class="answer-bottom">
-                <div
-                  class="answer-block"
-                  draggable="true"
-                  data-letter="A"
-                  data-question="What Mythos power allows you to respond differently to every situation?"
-                  data-answer="cast a magic spell"
-                >
-                  cast a magic spell
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- POWER CARD B -->
-        <div class="flip-card" id="cardB">
-          <div class="flip-card-inner">
-            <div class="flip-card-front" id="frontB">
-              <div
-                class="draggable-letter"
-                draggable="true"
-                data-letter="B"
-                data-question="What narrow group of effects within your Mythos’ domain have you mastered?"
-              >
-                <span>B</span>
-              </div>
-              <div class="question-text">
-                What narrow group of effects within your Mythos’ domain have you
-                mastered?
-              </div>
-            </div>
-            <div class="flip-card-back">
-              <div class="answer-bottom">
-                <div
-                  class="answer-block"
-                  draggable="true"
-                  data-letter="B"
-                  data-question="What narrow group of effects within your Mythos’ domain have you mastered?"
-                  data-answer="transportation spells"
-                >
-                  transportation spells
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div id="powerCardsContainer"></div>
 
         <h2 style="width: 100%">WEAKNESS TAG QUESTIONS</h2>
+        <hr>
         <p>
           Choose one question to answer. Answer it with a single description no
           more than a few words long. In your answer, you should describe
           something that will impede your character’s actions during the game.
-          Your answer becomes a weakness tag. Write it on your theme card under
-          WEAKNESS TAGS along with the letter of the question.
+          Your answer becomes a weakness tag.
+        </p>
+        <p>
+          Tip: Drag the question's letter to the card. You can also click the
+          card to flip it, to see example answers!
         </p>
 
-        <!-- WEAKNESS CARD A -->
-        <div class="flip-card" id="cardWA">
-          <div class="flip-card-inner">
-            <div class="flip-card-front" id="frontWA">
-              <div
-                class="draggable-letter"
-                draggable="true"
-                data-letter="A"
-                data-question="What are your powers of adaptivity dependent on?"
-              >
-                <span>A</span>
-              </div>
-              <div class="question-text">
-                What are your powers of adaptivity dependent on?
-              </div>
-            </div>
-            <div class="flip-card-back">
-              <div class="answer-bottom">
-                <div
-                  class="answer-block"
-                  draggable="true"
-                  data-letter="A"
-                  data-question="What are your powers of adaptivity dependent on?"
-                  data-answer="only works with a magic wand"
-                >
-                  only works with a magic wand
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- WEAKNESS CARD B -->
-        <div class="flip-card" id="cardWB">
-          <div class="flip-card-inner">
-            <div class="flip-card-front" id="frontWB">
-              <div
-                class="draggable-letter"
-                draggable="true"
-                data-letter="B"
-                data-question="What results are harder for your Mythos to achieve?"
-              >
-                <span>B</span>
-              </div>
-              <div class="question-text">
-                What results are harder for your Mythos to achieve?
-              </div>
-            </div>
-            <div class="flip-card-back">
-              <div class="answer-bottom">
-                <div
-                  class="answer-block"
-                  draggable="true"
-                  data-letter="B"
-                  data-question="What results are harder for your Mythos to achieve?"
-                  data-answer="dark magic is forbidden"
-                >
-                  dark magic is forbidden
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div id="weaknessCardsContainer"></div>
       </div>
 
       <!-- RIGHT PANEL: Theme Card with Editable THEME TITLE, MYSTERY, Power & Weakness Tag Slots -->
@@ -259,20 +184,20 @@
                 >x</span
               >
             </div>
+            <button id="saveAsPng">Save as PNG</button>
           </div>
         </div>
-
-        <button id="saveAsPng">Save as PNG</button>
       </div>
     </div>
 
     <!-- Reference your external script file (assuming script.js is in the same folder) -->
     <script src="script.js"></script>
+    <script src="adaptation.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fitty/2.3.6/fitty.min.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         fitty(".tag-text", {
-          minSize: 10, // minimum font size
+          minSize: 5, // minimum font size
           maxSize: 27, // maximum font size
           multiLine: false, // single-line resizing
         });
