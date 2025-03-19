@@ -11,8 +11,9 @@
       margin: 20px;
     }
     .menu {
-      max-width: 300px;
+      max-width: 350px;
       margin: 40px auto;
+      position: relative;
     }
     .mythos-btn {
       display: block;
@@ -26,23 +27,140 @@
       cursor: pointer;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       margin-bottom: 5px;
+      position: relative;
     }
     .mythos-btn:hover {
       background-color: #eaeaea;
+    }
+    /* Tooltip styling */
+    .tooltip {
+      display: none;
+      position: absolute;
+      left: 105%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 250px;
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      text-align: left;
+      font-size: 0.9em;
+      line-height: 1.4;
+      z-index: 100;
+    }
+    .mythos-btn:hover .tooltip {
+      display: block;
+    }
+    .tags {
+      font-size: 0.85em;
+      margin-top: 5px;
+    }
+    .tag {
+      background-color: yellow;
+      padding: 2px 5px;
+      border-radius: 3px;
+      margin: 2px;
+      display: inline-block;
     }
   </style>
 </head>
 <body>
   <h1>Mythos</h1>
   <div class="menu">
-    <button class="mythos-btn" onclick="location.href='mythos/adaptation.html'">Adaptation</button>
-    <button class="mythos-btn" onclick="location.href='mythos/bastion.html'">Bastion</button>
-    <button class="mythos-btn" onclick="location.href='mythos/divination.html'">Divination</button>
-    <button class="mythos-btn" onclick="location.href='mythos/expression.html'">Expression</button>
-    <button class="mythos-btn" onclick="location.href='mythos/mobility.html'">Mobility</button>
-    <button class="mythos-btn" onclick="location.href='mythos/relic.html'">Relic</button>
-    <button class="mythos-btn" onclick="location.href='mythos/subversion.html'">Subversion</button>
+    <button class="mythos-btn" onclick="location.href='mythos/adaptation.html'">
+      Adaptation
+      <div class="tooltip">
+        <strong>Nothing is permanent, everything is ephemeral.</strong> Different challenges require entirely different means to overcome. Some Mythoi grant their Rifts the power to adapt to circumstance.
+        <div class="tags">
+          <span class="tag">A RANGE OF MAGIC SPELLS</span>
+          <span class="tag">ADAPTING TO HARSH ENVIRONMENTS</span>
+          <span class="tag">SHAPESHIFTING OR POWER COPYING</span>
+          <span class="tag">A MYSTERIOUS, UNPREDICTABLE FORCE</span>
+          <span class="tag">ELEMENTAL MANIPULATION</span>
+        </div>
+      </div>
+    </button>
+
+    <button class="mythos-btn" onclick="location.href='mythos/bastion.html'">
+      Bastion
+      <div class="tooltip">
+        <strong>Some things can never be broken.</strong> A Bastion Mythos grants a Rift unshakable protection, resilience, or fortitude in the face of overwhelming forces.
+        <div class="tags">
+          <span class="tag">SUPERHUMAN DURABILITY</span>
+          <span class="tag">UNBREAKABLE DEFENSES</span>
+          <span class="tag">A SHIELD AGAINST THE WORLD</span>
+          <span class="tag">ENDURANCE BEYOND LIMITS</span>
+        </div>
+      </div>
+    </button>
+
+    <button class="mythos-btn" onclick="location.href='mythos/divination.html'">
+      Divination
+      <div class="tooltip">
+        <strong>To know is to be prepared.</strong> The Divination Mythos gifts a Rift the power to perceive things hidden from others, foresee events, or decipher deep truths.
+        <div class="tags">
+          <span class="tag">SEEING THE FUTURE</span>
+          <span class="tag">MYSTICAL INSIGHT</span>
+          <span class="tag">UNCANNY PERCEPTION</span>
+          <span class="tag">SUPERNATURAL INTUITION</span>
+        </div>
+      </div>
+    </button>
+
+    <button class="mythos-btn" onclick="location.href='mythos/expression.html'">
+      Expression
+      <div class="tooltip">
+        <strong>True power must be released.</strong> A Rift with an Expression Mythos is gifted with immense outward force—energy projection, destructive capabilities, or awe-inspiring spectacle.
+        <div class="tags">
+          <span class="tag">ELEMENTAL BLASTS</span>
+          <span class="tag">RAW FORCE</span>
+          <span class="tag">ENERGY MANIPULATION</span>
+          <span class="tag">UNSTOPPABLE ATTACKS</span>
+        </div>
+      </div>
+    </button>
+
+    <button class="mythos-btn" onclick="location.href='mythos/mobility.html'">
+      Mobility
+      <div class="tooltip">
+        <strong>Nothing can hold you back.</strong> The Mobility Mythos grants its Rift extraordinary movement abilities, allowing them to evade, chase, or traverse obstacles with ease.
+        <div class="tags">
+          <span class="tag">SUPER SPEED</span>
+          <span class="tag">FLIGHT</span>
+          <span class="tag">TELEPORTATION</span>
+          <span class="tag">PARKOUR MASTERY</span>
+        </div>
+      </div>
+    </button>
+
+    <button class="mythos-btn" onclick="location.href='mythos/relic.html'">
+      Relic
+      <div class="tooltip">
+        <strong>A Mythos tied to an object of power.</strong> A Rift with a Relic Mythos channels their strength through an ancient, mystical, or legendary artifact.
+        <div class="tags">
+          <span class="tag">HOLY RELICS</span>
+          <span class="tag">LEGENDARY WEAPONS</span>
+          <span class="tag">TALISMANS OF POWER</span>
+          <span class="tag">MAGICAL ARTIFACTS</span>
+        </div>
+      </div>
+    </button>
+
+    <button class="mythos-btn" onclick="location.href='mythos/subversion.html'">
+      Subversion
+      <div class="tooltip">
+        <strong>Rules were made to be broken.</strong> A Rift with a Subversion Mythos bends reality, manipulates perception, or turns limitations into advantages.
+        <div class="tags">
+          <span class="tag">ILLUSIONS</span>
+          <span class="tag">REALITY WARPING</span>
+          <span class="tag">LIES MADE REAL</span>
+          <span class="tag">UNPREDICTABLE CHAOS</span>
+        </div>
+      </div>
+    </button>
   </div>
+
   <p><a href="index.html">Back to Home</a></p>
 </body>
 </html>
