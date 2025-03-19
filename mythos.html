@@ -4,12 +4,45 @@
   <meta charset="UTF-8">
   <title>Mythos</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f9f9f9;
+      margin: 20px;
+    }
+    .menu {
+      max-width: 300px;
+      margin: 40px auto;
+    }
+    .mythos-btn {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      font-size: 1.2em;
+      text-align: left;
+      border: none;
+      background-color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 5px;
+    }
+    .mythos-btn:hover {
+      background-color: #eaeaea;
+    }
   </style>
 </head>
 <body>
   <h1>Mythos</h1>
-  <p>Content for the Mythos page goes here.</p>
+  <div class="menu">
+    <button class="mythos-btn" onclick="location.href='mythos/adaptation.html'">Adaptation</button>
+    <button class="mythos-btn" onclick="location.href='mythos/bastion.html'">Bastion</button>
+    <button class="mythos-btn" onclick="location.href='mythos/divination.html'">Divination</button>
+    <button class="mythos-btn" onclick="location.href='mythos/expression.html'">Expression</button>
+    <button class="mythos-btn" onclick="location.href='mythos/mobility.html'">Mobility</button>
+    <button class="mythos-btn" onclick="location.href='mythos/relic.html'">Relic</button>
+    <button class="mythos-btn" onclick="location.href='mythos/subversion.html'">Subversion</button>
+  </div>
   <p><a href="index.html">Back to Home</a></p>
 </body>
 </html>
