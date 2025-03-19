@@ -1,0 +1,228 @@
+/* --- Layout --- */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+}
+.split-container {
+  display: flex;
+  min-height: 100vh;
+  align-items: flex-start;
+}
+.left-panel,
+.right-panel {
+  padding: 20px;
+  width: 50%;
+  overflow-y: auto;
+}
+/* Left panel arranged horizontally */
+.left-panel {
+  background: #efefef;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.right-panel {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* --- Flip Card (Vertical Flip) --- */
+.flip-card {
+  background-color: transparent;
+  width: 200px;
+  height: 220px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease-in-out;
+  transform-style: preserve-3d;
+}
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+.flip-card-front {
+  background: #ccc;
+  color: #333;
+}
+.flip-card-back {
+  background: #fff;
+  transform: rotateY(180deg);
+}
+.flipped {
+  transform: rotateY(180deg);
+}
+
+/* --- Flip Card Content Layout (Top/Bottom) --- */
+.question-top {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  padding: 5px;
+}
+.answer-bottom {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px;
+}
+
+/* Draggable Answer Block on back side */
+.answer-block {
+  margin-top: 10px;
+  padding: 8px 10px;
+  background: #ffd700;
+  border-radius: 5px;
+  cursor: grab;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* --- Flip Card Front Layout --- */
+.flip-card-front .draggable-letter {
+  cursor: grab;
+  background-color: hotpink;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 5px;
+  font-size: 1em;
+  font-weight: bold;
+}
+.flip-card-front .question-text {
+  font-size: 1em;
+  color: #333;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+/* --- Theme Card (Right Side) --- */
+.theme-card {
+  background: url("../pics/mythos_themefront.png") no-repeat center center;
+  background-size: cover;
+  width: 90%;
+  max-width: 450px;
+  background: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  margin-top: 20px;
+  position: relative;
+}
+.theme-card h2,
+.theme-card h3 {
+  text-align: center;
+  font-family: "Helvetica", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: normal;
+  margin-top: 0;
+}
+.theme-card h3 {
+  letter-spacing: 1px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+/* THEME TITLE & MYSTERY editable areas */
+.editable-title {
+  width: 100%;
+  min-height: 30px;
+  padding: 8px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border-bottom: 2px solid #ccc;
+  text-align: center;
+  outline: none;
+  cursor: text;
+  margin-bottom: 15px;
+}
+.editable-title:empty::before {
+  content: "Type here...";
+  color: #999;
+}
+
+/* Power & Weakness Tags list styling */
+.power-tags,
+.weakness-tags {
+  margin-top: 15px;
+}
+.power-tag-line,
+.weakness-tag-line {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  position: relative;
+  min-height: 24px;
+  border-bottom: 1px dotted #ccc;
+}
+.tag-letter {
+  width: 20px;
+  font-weight: bold;
+  text-align: left;
+  margin-right: 10px;
+}
+.tag-text {
+  flex: 1;
+  color: #555;
+  outline: none;
+  cursor: text;
+}
+.tag-text:empty::before {
+  content: "Click to edit...";
+  color: #999;
+}
+.clear-slot {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: red;
+  font-weight: bold;
+}
+
+/* --- Custom Tooltip --- */
+#tooltip {
+  position: fixed;
+  background: rgba(50, 50, 50, 0.9);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 5px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.1s;
+  z-index: 9999;
+  font-size: 0.85em;
+  max-width: 300px;
+}
